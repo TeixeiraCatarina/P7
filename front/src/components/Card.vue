@@ -8,7 +8,7 @@ export default {
         Comment,
         Avatar 
     },
-    props: ["email", "content", "url", "comments", "id", "currentUser", "role", "createdAt"],   //pour que les composants puissent recevoir de l'information   //le currentUser va permettre d'afficher l'icone poubelle que lorsque c'est le createur du post
+    props: ["email", "content", "url", "comments", "id", "currentUser", "role", "createdAt"],   //pour que les composants puissent recevoir de l'information  
     
     data() {
         return {
@@ -23,13 +23,13 @@ export default {
             console.log(this.$props.id)
             const { url, headers } = getUrlAndHeaders()
             const options = {
-                headers: { ...headers, "Content-Type": "application/json" },  //pour pouvoir ajouter des choses dans headers on rajoute ...headers vue qu'il est dans un autre fichier
+                headers: { ...headers, "Content-Type": "application/json" },  
                 method: "POST",
                 body: JSON.stringify({
                     comment: this.currentComment
                 })
             }
-            fetch(url + "posts/" + this.$props.id, options)    //on rajoute l'id du post? dans l'url
+            fetch(url + "posts/" + this.$props.id, options)   
                 .then((res) => {
                     if (res.status === 200) {
                         return res.json()
@@ -39,12 +39,11 @@ export default {
                 })
                 .then((res) => {
                     console.log("res:", res)
-                    this.$router.go()  //raffrechir la page
-                    //this.currentComment = null
+                    this.$router.go()  
                 })
                 .catch((err) => console.log("err:", err))
         },
-        deletePost(e) {    //pour pouvoir supprimer un post
+        deletePost(e) {    
             const { url, headers } = getUrlAndHeaders()
             fetch(url + "posts/" + this.$props.id, {
                 headers: { ...headers, "Content-Type": "application/json" },
@@ -111,11 +110,6 @@ export default {
     width: 70%;
     }
 }
-/*.card-header {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}*/
 .card-header img {
     width: 30px;
 }

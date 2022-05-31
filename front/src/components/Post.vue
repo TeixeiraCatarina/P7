@@ -9,7 +9,7 @@ export default {
         }
     },
     methods: {
-        handleFile(e) {   //pour récuperer l'image pour le post
+        handleFile(e) {   
             this.selectedImage = e.target.files[0]
         },
         handleClick() {  //event handler lorsqu'on click sur le bouton post 
@@ -32,7 +32,7 @@ export default {
                     }
                 })
                 .then((res) => {
-                    this.$router.go()  // si tout ok alors il recharge la page
+                    this.$router.go() 
                 })
                 .catch((err) => console.log("err:", err))
         }

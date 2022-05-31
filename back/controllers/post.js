@@ -2,18 +2,17 @@ const { prisma } = require("../db/db")
 
 // Afficher un post 
 async function getPosts(req, res) {
-    //on recupere l'email depuis le token pour vérifier si l'utilisateur est loger
     const email = req.email
     const posts = await prisma.post.findMany({
         include: {
             comments: {
                 orderBy: {
-                    createdAt: "asc"  // pour que les commentaires s'affichent le plus recent en bas
+                    createdAt: "asc"  // pour que les commentaires s'affichent du plus recent au plus ancien
                 },
                 include: {
                     user: {
                         select: {
-                            email: true    // pour avoir acces a l'email pour ensuite le faire afficher dans le front 
+                            email: true  
                         }
                     }
                 }
@@ -25,7 +24,7 @@ async function getPosts(req, res) {
             }
         },
         orderBy: {
-            createdAt: "desc"   // pour que les posts s'affichent du plus recent au plus vieux
+            createdAt: "desc"   // pour que les posts s'affichent du plus recent au plus ancien
         }
     })
     res.send({ posts, email })
@@ -51,7 +50,7 @@ async function createPost(req, res) {
 
 // Créer l'url de l'image
 function addImageUrl(req, post) {
-    const hasImage = req.file != null  //req.file a-t-il une image 
+    const hasImage = req.file != null  
     if (!hasImage) return    //s'il n'y a pas d'image alors on fait rien 
     let pathToImage = req.file.path.replace("\\","/")
     const protocol = req.protocol
@@ -77,7 +76,6 @@ async function createComment(req, res) {
     if (post == null) {
         return res.status(404).send({ error: "Post not found" })
     }
-    //pour avoir le mail de l'utilisateur qui commente 
     const userComment = await prisma.user.findUnique({
         where: { email: req.email }
     })

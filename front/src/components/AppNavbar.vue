@@ -21,24 +21,6 @@ export default {
       localStorage.removeItem("email")
       this.$router.go()
     },
-    /*deleteAccount(e) { 
-      const { url, headers } = getUrlAndHeaders()
-            fetch(url + "users/" {
-                headers: { ...headers, "Content-Type": "application/json" },
-                method: "DELETE"
-            })
-                .then((res) => {
-                    if (res.status === 200) {
-                        return res.json()
-                    } else {
-                        throw new Error("Failed to delete account")
-                    }
-                })
-                .then((res) => {
-                    this.$router.go()
-                })
-                .catch((err) => console.log("err:", err))
-    }*/
     deleteAccount: async function(e) {
       const { url } = getUrlAndHeaders()
       const email = localStorage.getItem("email")
@@ -49,14 +31,12 @@ export default {
           "Content-Type": "application/json",
           "Accept": "application/json"
         },
-        //body: JSON.stringify({ email }),
         data: { source: email }
       }
       try {
         await axios.delete(url + "users/delete", options)
         localStorage.removeItem("token")
         this.$router.go()
-        //this.$router.push("/signup")
       } catch (err) {
         const error = err.response.data.error
         this.error = error
@@ -137,46 +117,5 @@ export default {
   color: red;
   transform: scale(1.01);
 }
-
- /*.bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }*/
-/*.b-example-divider {
-  height: 3rem;
-  background-color: rgba(0, 0, 0, .1);
-  border: solid rgba(0, 0, 0, .15);
-  border-width: 1px 0;
-  box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
-}*/
-
-/*.form-control-dark {
-  color: #fff;
-  background-color: var(--bs-dark);
-  border-color: var(--bs-gray);
-}*/
-/*.form-control-dark:focus {
-  color: #fff;
-  background-color: var(--bs-dark);
-  border-color: #fff;
-  box-shadow: 0 0 0 .25rem rgba(255, 255, 255, .25);
-}*/
-
-/*.text-small {
-  font-size: 85%;
-}*/
-
-/*.dropdown-toggle {
-  outline: 0;
-}*/
 
 </style>

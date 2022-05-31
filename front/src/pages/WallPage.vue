@@ -56,8 +56,9 @@ export default {
             <h1 class="text-center">Bienvenue, {{ currentUser }}</h1>
         </div>
         <Post></Post>
+        
         <hr class="dropdown-divider mt-4"/>       <!-- barre de séparation -->
-        <!--<div v-if="posts.length === 0">No posts to display. Start chatting</div>-->
+
         <div v-for="post in posts">
             <Card 
                 :currentUser="currentUser"

@@ -5,9 +5,6 @@ export default {
   name: "LoginPage",
   data() {
     return { 
-      //username: "groupomania@hotmail.com", 
-      //password: "polm", 
-      //confirmPassword: "polm",
       hasInvalidCredentials: false,
       error: null,
       isLoginMode: true   //par default sera true vu que la plupart du temps on voudra ce connecter -> mode login
@@ -17,7 +14,7 @@ export default {
     loginUser,
     setFormValidity,
     toggleLogin() {
-      this.isLoginMode = !this.isLoginMode    //isloginmode deviendra la contraire de isloginmode
+      this.isLoginMode = !this.isLoginMode    
     },
     signUp: async function(email, password, confirmPassword, router) {
       const { url } = getUrlAndHeaders()
