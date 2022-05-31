@@ -44,7 +44,7 @@ async function createPost(req, res) {
         const result = await prisma.post.create({ data: post })
         res.send({ post: result })
     } catch (err) {
-        res.status(500).send({ error: "Something went wrong" })
+        res.status(500).send({ error: "Probleme lors de la creation du compte" })
     }
 }
 
@@ -114,7 +114,7 @@ async function deletePost(req, res){
         await prisma.post.delete({ where: { id: postId } })   //pour supprimer le post 
         res.send({ message: "Post deleted "})
     } catch {
-        res.status(500).send({ error: "Something went wrong" })
+        res.status(500).send({ error: "Probleme lors de la suppresion d'un post" })
     }
 }
 

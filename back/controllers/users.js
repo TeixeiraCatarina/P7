@@ -6,17 +6,17 @@ const bcrypt = require("bcrypt")
 async function userSignup(req, res) {
     const { email, password, confirmPassword } = req.body
     try {
-        if (confirmPassword == null) return res.status(400).send({ error: "Veuillez vérifier votre mot de passe" })
-        if (password !== confirmPassword) return res.status(400).send({ error: "Passwords don't match" })
+        if (confirmPassword == null) return res.status(400).send({ error: "Veuillez remplir tous les champs" })
+        if (password !== confirmPassword) return res.status(400).send({ error: "Les mots de passe ne correspondent pas" })
         
         const userInDb = await getUser(email)
-        if (userInDb !== null) return res.status(400).send({ error: "User already exists" })
+        if (userInDb !== null) return res.status(400).send({ error: "Cette adresse e-mail est déjà utilisée" })
 
         const hash = await hashPassword(password)
         const user = await saveUser({ email, password: hash })
         res.send({ user })
     } catch (error) {
-        res.status(500).send({ error })
+        res.status(500).send({ error: "Impossible de créer un compte" })
     } 
 }
 
@@ -36,10 +36,10 @@ async function logUser(req, res) {
     const { email, password } = req.body
     try {
         const user = await getUser(email)
-        if (user == null) return res.status(404).send({ message: "User not found" })
+        if (user == null) return res.status(404).send({ error: "Mauvaise adresse email" })
     
         const isPasswordCorrect = await checkPassword(user, password)
-        if (!isPasswordCorrect) return res.status(401).send({ error: "Wrong password" })
+        if (!isPasswordCorrect) return res.status(401).send({ error: "Mauvais mot de passe" })
             
         const token = makeToken(email)
         res.send({ token: token, email: user.email, role: user.role})

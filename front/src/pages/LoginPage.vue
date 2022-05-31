@@ -114,7 +114,7 @@ function loginUser(email, password, router, store) {
           required="true"
           @invalid="setFormValidity"
         />
-        <label for="floatingInput">Email address</label>
+        <label for="floatingInput">Email</label>
       </div>
       <div class="form-floating">
         <input 
@@ -126,7 +126,7 @@ function loginUser(email, password, router, store) {
           required="true"
           @invalid="setFormValidity"
         />
-        <label for="floatingPassword">Password</label>
+        <label for="floatingPassword">Mot de passe</label>
       </div>
       <!-- partie signup -->
       <div v-if="!isLoginMode" class="form-floating">
@@ -138,7 +138,7 @@ function loginUser(email, password, router, store) {
           required="true"
           @invalid="setFormValidity"
         />
-        <label for="floatingPassword">Password</label>
+        <label for="floatingPassword">Mot de passe</label>
       </div>
 
       <div v-if="hasInvalidCredentials" class="error-msg">Veuillez remplir tous les chapms</div>
