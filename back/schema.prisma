@@ -1,0 +1,45 @@
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["referentialIntegrity"]
+}
+
+datasource db {
+  provider = "mysql"
+  url = env("DATABASE_URL")
+  referentialIntegrity = "prisma"
+}
+
+model User {
+  id          Int     @id @default(autoincrement())
+  email       String  @unique
+  password    String
+  posts       Post[]
+  comments    Comment[]
+  role        user_role     @default(user)
+}
+
+model Post {
+  id          Int @id @default(autoincrement())
+  content     String    
+  imageUrl    String?   //rajoute ? pour dire que c'est optionnel 
+  userId      Int    //tu vas recevoir un userId et cet userId c'est l'id d'un user dans la base de données , dans la table user 
+  user        User @relation(fields: [userId], references: [id])   //pour touver le id du user qui fait le post 
+  comments    Comment[]
+  createdAt   DateTime @default(now())    //pour avoir la date ou le post a ete créée pour que on puisse faire apparaitre les post par ordre du plus recent 
+}
+
+model Comment {
+  id          Int @id @default(autoincrement())
+  content     String
+  postId      Int
+  post        Post @relation(fields: [postId], references: [id])  //l'ntrée postId ca sera l'entrée d'un post
+  createdAt   DateTime @default(now())
+  userId      Int
+  user        User @relation(fields: [userId], references: [id])
+
+}
+
+enum user_role {
+  admin
+  user
+}
