@@ -8,7 +8,7 @@ export default {
         Comment,
         Avatar 
     },
-    props: ["email", "content", "url", "comments", "id", "currentUser", "role", "createdAt"],   //pour que les composants puissent recevoir de l'information  
+    props: ["email", "content", "url", "comments", "id", "currentUser", "role"],   //pour que les composants puissent recevoir de l'information  
     
     data() {
         return {
@@ -79,13 +79,12 @@ export default {
         <img v-if="url" :src="url" class="card-img-top" alt="..." />
         <div class="card-body">
             <p class="card-text">
-                {{ content + " - " + createdAt }}
+                {{ content }}
             </p>
             <div v-for="comment in comments">
                 <Comment 
                     :email="comment.user.email" 
-                    :content="comment.content"
-                    :createdAt="comment.createdAt">
+                    :content="comment.content">
                 </Comment>
             </div>
 

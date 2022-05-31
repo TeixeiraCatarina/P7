@@ -13,10 +13,6 @@ export default {
         content: {
             type: String,
             required: true
-        },
-        createdAt: {
-            type: Date,
-            required: true
         }
     }
 }
@@ -27,7 +23,7 @@ export default {
         <Avatar/>
         <div class="flex-comumn comment_text p-1 mb-2">
             <p class="email">{{ email }}</p>
-            <p>{{ content + " - " + createdAt }}</p>
+            <p>{{ content }}</p>
         </div>
     </div>
 </template>
