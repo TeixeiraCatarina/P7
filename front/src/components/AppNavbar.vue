@@ -22,6 +22,7 @@ export default {
       this.$router.go()
     },
     deleteAccount: async function(e) {
+      if(confirm('Veuillez confirmer la suppression')){ 
       const { url } = getUrlAndHeaders()
       const email = localStorage.getItem("email")
       console.log( email + "email" )
@@ -42,6 +43,7 @@ export default {
         const error = err.response.data.error
         this.error = error
         throw new Error("impossible de supprimer:" + error)
+      }
       }
     }
   }
