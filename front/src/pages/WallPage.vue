@@ -44,7 +44,7 @@ export default {
         return {
             posts: [],
             currentUser: null,
-            role: localStorage.getItem('role')
+            //role: localStorage.getItem('role')
         }
     }
 }
@@ -55,7 +55,7 @@ export default {
         <div class="col-sm-12">
             <h1 class="text-center">Bienvenue, {{ currentUser }}</h1>
         </div>
-        <Post></Post>
+        <Post></Post>  
         
         <hr class="dropdown-divider mt-4"/>       <!-- barre de séparation -->
 

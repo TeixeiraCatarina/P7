@@ -103,13 +103,20 @@ async function deletePost(req, res){
                 }
             }  
         })
+        const user = await prisma.user.findUnique({
+            where: {
+                email: req.email
+            }  
+        })
         if (post == null) {
             return res.status(404).send({ error: "Post not found" })
         }
         const email = req.email
-        if (email !== post.user.email) {
+        console.log(email)
+        if (email !== post.user.email && user.role !== 'admin') {
             return res.status(403).send({ error: "Vous n'êtes pas le propriétaire de ce post"})
         }
+        
         await prisma.comment.deleteMany({ where: { postId } })  //pour supprimer les commentaires associés au post 
         await prisma.post.delete({ where: { id: postId } })   //pour supprimer le post 
         res.send({ message: "Post deleted "})

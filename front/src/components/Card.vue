@@ -43,10 +43,12 @@ export default {
                 })
                 .catch((err) => console.log("err:", err))
         },
-        deletePost(e) {    
+        deletePost(e) {   
+            if(confirm('Veuillez confirmer la suppression')){  
             const { url, headers } = getUrlAndHeaders()
+            const role = localStorage.getItem('role')
             fetch(url + "posts/" + this.$props.id, {
-                headers: { ...headers, "Content-Type": "application/json" },
+                headers: { ...headers, "Content-Type": "application/json", role},
                 method: "DELETE"
             })
                 .then((res) => {
@@ -60,6 +62,7 @@ export default {
                     this.$router.go()
                 })
                 .catch((err) => console.log("err:", err))
+            }
         }
     }
 }
@@ -67,10 +70,12 @@ export default {
 </script>
 
 <template>
-    <div class="card mb-3 m-auto">
+    <div class="card mb-3 m-auto ">
+
         <div class="card-header d-flex"> 
             <img src="../assets/images/apple-icon-57x57.png" class="rounded-circle shadow-4" alt="avatar"/>
             <span>{{ email }}</span>
+            
             <div v-if="currentUser === email || role == 'admin'" class="delete" @click="deletePost">
                 Supprimer 
             </div>
@@ -109,6 +114,9 @@ export default {
     width: 70%;
     }
 }
+.text {
+    margin-left: 30rem;
+}
 .card-header img {
     width: 30px;
 }
@@ -123,6 +131,15 @@ export default {
 }
 .delete::before {
     font-size: 10px;
+}
+.non {
+    margin-left: auto;
+    margin-right: 3rem;
+    color: #4E5166;
+}
+.non:hover{
+    cursor: pointer;
+    transform: scale(1.1);
 }
 img {
     margin-right: 1rem;

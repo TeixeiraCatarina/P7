@@ -34,6 +34,7 @@ export default {
         data: { source: email }
       }
       try {
+        var reponse = confirm("Veuillez confirmer la suppression")
         await axios.delete(url + "users/delete", options)
         localStorage.removeItem("token")
         this.$router.go()
@@ -63,9 +64,11 @@ export default {
             v-if="this.isLoggedIn"
             class="btn delete me-2"
             type="submit"
-            @click="deleteAccount">
+            @click="deleteAccount"
+            onclick="confirmer()">
             Supprimer son compte
           </button>
+      
           <button
             @click="this.logout"
             v-if="this.isLoggedIn"
@@ -81,7 +84,9 @@ export default {
 </template>
 
 <style scoped>
-
+p {
+  color: black;
+}
 .bg {
   background-color: white;
 }

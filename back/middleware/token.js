@@ -1,3 +1,4 @@
+// Vérifier le token 
 const jwt = require("jsonwebtoken")
 
 function checkToken(req, res, next){

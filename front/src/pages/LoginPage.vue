@@ -138,7 +138,12 @@ function loginUser(email, password, router, store) {
           required="true"
           @invalid="setFormValidity"
         />
-        <label for="floatingPassword">Mot de passe</label>
+        <label for="floatingPassword">Confirmer le mot de passe</label><br>
+        <p>Votre mot de passe doit contenir:<br>
+          - au moins 8 caractères <br>
+          - une majuscule et une minuscule <br>
+          - et au moins un chiffre
+        </p>
       </div>
 
       <div v-if="hasInvalidCredentials" class="error-msg">Veuillez remplir tous les chapms</div>
