@@ -34,8 +34,6 @@ export default {
         await axios.post(url + "users/signup", body, options)
         this.$router.go("/")
       } catch (err) {
-        const error = err.response.data.error
-        this.error = error
         throw new Error("Failed to signup:" + error)
       }
     }
@@ -142,7 +140,8 @@ function loginUser(email, password, router, store) {
         <p>Votre mot de passe doit contenir:<br>
           - au moins 8 caractères <br>
           - une majuscule et une minuscule <br>
-          - et au moins un chiffre
+          - au moins un chiffre <br>
+          - et ne doit pas contenir d'espace
         </p>
       </div>
 

@@ -64,12 +64,10 @@ function checkPassword(user, password){
 // Supprimer son compte
 async function deleteAccount(req, res){
     const email = req.body.source
-    console.log( req.body )
-    console.log( email )
     try {
         const user = await getUser(email)
         if (user == null) return res.status(404).send({ message: "User not found" })
-
+       
         await prisma.user.delete({ where: { id: user.id } })
         res.send({ message: "Account deleted" })
     } catch(err) {

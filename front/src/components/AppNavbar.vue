@@ -35,7 +35,6 @@ export default {
         data: { source: email }
       }
       try {
-        var reponse = confirm("Veuillez confirmer la suppression")
         await axios.delete(url + "users/delete", options)
         localStorage.removeItem("token")
         this.$router.go()

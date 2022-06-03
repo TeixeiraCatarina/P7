@@ -18,7 +18,7 @@ function verifPassword(req, res, next){
     if(passwordSchema.validate(req.body.password)){
         next()
     }else{
-        return res.status(400).send([ "Le mot de passe doit contenir entre 8 et 100 caractères, contenir au moins 1 majuscule, au moins 1 minuscule, au moins 2 chiffres et ne doit pas contenir d'espace"])
+        return res.status(400).send([ "Le mot de passe doit contenir entre 8 et 100 caractères, contenir au moins 1 majuscule, au moins 1 minuscule, au moins 1 chiffre et ne doit pas contenir d'espace"])
     }
 }
 module.exports = { verifPassword }
