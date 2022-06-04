@@ -67,8 +67,14 @@ async function deleteAccount(req, res){
     try {
         const user = await getUser(email)
         if (user == null) return res.status(404).send({ message: "User not found" })
-       
+
+        
+
+        await prisma.comment.deleteMany({ where: { id: user.id } })   
+        await prisma.post.delete({ where: { id: user.id } })
+
         await prisma.user.delete({ where: { id: user.id } })
+
         res.send({ message: "Account deleted" })
     } catch(err) {
         res.status(500).send({ error: "Imposible de supprimer le compte" + err })

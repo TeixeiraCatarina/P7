@@ -15,6 +15,7 @@ Backend du projet Mythomania
 3. Renommez le fichier `.env.development` en `.env`
 4. Remplissez-le avec vos variables d'environnement personnelles
 5. Ce projet a été réalisé avec une base de données MySQL PlaetScale en ligne
+6. Pour lancer le script `npm run dev`
 
 ### Comment utiliser Prisma pour interagir avec la base de données
 
