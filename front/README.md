@@ -1,25 +1,17 @@
-# groupamania
 
-This template should help get you started developing with Vue 3 in Vite.
+## Mythomania P7
 
-## Recommended IDE Setup
+Frontend du projet Mythomania
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.vscode-typescript-vue-plugin).
+### Technologies utilisées
 
-## Customize configuration
+- Vue.js
+- Bootstrap
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+### Comment utiliser
 
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-
+1. `git clone` 
+2. `npm install`
+3. Renommez le fichier `.env.development` en `.env`
+4. Remplissez-le avec vos variables d'environnement personnelles
+5. Pour lancer le script `npm run dev`

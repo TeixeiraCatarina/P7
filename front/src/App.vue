@@ -1,6 +1,5 @@
 <script>
 import AppNavbar from "./components/AppNavbar.vue"
-
 export default {
   name: "App",
   components: {
@@ -15,5 +14,4 @@ export default {
 </template>
 
 <style>
-
 </style>

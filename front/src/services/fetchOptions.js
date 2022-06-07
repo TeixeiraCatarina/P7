@@ -8,7 +8,8 @@ const headers = {
 
 function getUrlAndHeaders(){
     return {
-        url, headers 
+        url, 
+        headers 
     }
 }
 

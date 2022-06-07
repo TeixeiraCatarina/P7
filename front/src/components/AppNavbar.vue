@@ -22,7 +22,7 @@ export default {
       this.$router.go()
     },
     deleteAccount: async function(e) {
-      if(confirm('Veuillez confirmer la suppression')){ 
+      if(confirm("Veuillez confirmer la suppression")){ 
       const { url } = getUrlAndHeaders()
       const email = localStorage.getItem("email")
       console.log( email + "email" )
@@ -35,6 +35,7 @@ export default {
         data: { source: email }
       }
       try {
+        //var reponse = confirm("Veuillez confirmer la suppression")
         await axios.delete(url + "users/delete", options)
         localStorage.removeItem("token")
         this.$router.go()
@@ -123,5 +124,4 @@ p {
   color: red;
   transform: scale(1.01);
 }
-
 </style>

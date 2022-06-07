@@ -2,7 +2,6 @@
 import Card from "../components/Card.vue"
 import Post from "../components/Post.vue"
 import { getUrlAndHeaders } from "./../services/fetchOptions.js"
-
 export default {
     name: "WallPage",
     components: { 

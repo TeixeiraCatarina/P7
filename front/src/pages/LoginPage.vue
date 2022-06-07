@@ -34,6 +34,8 @@ export default {
         await axios.post(url + "users/signup", body, options)
         this.$router.go("/")
       } catch (err) {
+        const error = err.response.data.error
+        this.error = error
         throw new Error("Failed to signup:" + error)
       }
     }
@@ -77,11 +79,9 @@ function loginUser(email, password, router, store) {
     .then((res) => {
       const token = res.token
       const role = res.role
-
       localStorage.setItem("token", token)
       localStorage.setItem("email", email)
       localStorage.setItem("role", role)
-
       let tokenInCache
       while (tokenInCache == null) {
         tokenInCache = localStorage.getItem("token")
@@ -140,8 +140,7 @@ function loginUser(email, password, router, store) {
         <p>Votre mot de passe doit contenir:<br>
           - au moins 8 caractères <br>
           - une majuscule et une minuscule <br>
-          - au moins un chiffre <br>
-          - et ne doit pas contenir d'espace
+          - et au moins un chiffre
         </p>
       </div>
 
@@ -193,33 +192,27 @@ body {
   padding-bottom: 40px;
   background-color: #f5f5f5;
 }
-
 .form-signin {
   width: 100%;
   max-width: 330px;
   padding: 15px;
   margin: auto;
 }
-
 .form-signin .checkbox {
   font-weight: 400;
 }
-
 .form-signin .form-floating:focus-within {
   z-index: 2;
 }
-
 .form-signin input[type="email"] {
   margin-bottom: -1px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
-
 .form-signin input[type="password"] {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
-
 .button[type="submit"] {
   margin-top: 1rem;
 }
@@ -239,7 +232,6 @@ body {
     -moz-user-select: none;
     user-select: none;
   }
-
   @media (min-width: 768px) {
     .bd-placeholder-img-lg {
       font-size: 3.5rem;

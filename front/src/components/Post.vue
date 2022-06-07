@@ -17,7 +17,6 @@ export default {
             const formData = new FormData()   // pour pouvoir faire un post avec et sans image
             formData.append("content", this.content)
             formData.append("image", this.selectedImage)
-
             const options = {
                 headers, 
                 method: "POST",
@@ -65,7 +64,6 @@ h3 {
 #file-input {
     display: none;
 }
-
 .form-floating > div.form-control {
     content: "Ajouter un post";
     height: auto;
@@ -88,5 +86,4 @@ h3 {
   background-color: #FD2D01;
   transform: scale(1.01);
 }
-
 </style>
